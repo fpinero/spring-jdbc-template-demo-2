@@ -50,9 +50,18 @@ public class JdbcTemplateClassicApp2 {
 		Organization org4 = dao.getOrganizationIdByName(OrganizationToSerach);
 		if (org4 != null){
 			int idOrg = org4.getId();
-			System.out.println("El id de la organización " + OrganizationToSerach + " es:" + idOrg);
+			System.out.println("El id de la organization " + OrganizationToSerach + " es:" + idOrg);
 			System.out.println("Los datos de la organización son: " + org4);
 		}
+		
+		//Busquemos las organizations con mas de X usuarios
+		int numEmpl = 5000;
+		List<Organization> orgs2 = dao.getOrganizationByMinEmployees(numEmpl);
+		System.out.println("**** Mostrando organizations con mas de " + numEmpl +" empleados");
+		for (Organization orga : orgs2){
+			DaoUtils.printOrganization(orga, "Mas_de_"+numEmpl+"_empleados");
+		}
+		
 
 		dao.cleanup();
 		DaoUtils.printOrganizationCount(dao.getAllOrganizations(), DaoUtils.cleanpOperation);

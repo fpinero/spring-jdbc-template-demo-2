@@ -29,4 +29,6 @@ public interface OrganizationDao {
 	public void cleanup();
 
 	public Organization getOrganizationIdByName(String string);
+	
+	public List<Organization> getOrganizationByMinEmployees(Integer employees);
 }

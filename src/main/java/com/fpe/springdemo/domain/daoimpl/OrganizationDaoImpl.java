@@ -69,6 +69,13 @@ public class OrganizationDaoImpl implements OrganizationDao {
 		Object[] args = new Object[] { org.getSlogan(), org.getId() };
 		return jdbcTemplate.update(sqlQuery, args) == 1;
 	}
+	
+	public List<Organization> getOrganizationByMinEmployees(Integer employees) {
+		String sqlQuery = "SELECT * FROM organization WHERE employee_count > ?";
+		Object[] args = new Object[] { employees };
+		List<Organization> orgList = jdbcTemplate.query(sqlQuery, args, new OrganizationRowMapper());
+		return orgList;
+	}
 
 	// elimina totalmente los registros de una tabla
 	// no es normal añadir este metodo
@@ -77,5 +84,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
 		jdbcTemplate.execute(sqlQuery);
 
 	}
+
+	
 
 }
