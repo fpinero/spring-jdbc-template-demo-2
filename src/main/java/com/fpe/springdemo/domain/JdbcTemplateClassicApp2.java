@@ -58,9 +58,10 @@ public class JdbcTemplateClassicApp2 {
 		int numEmpl = 5000;
 		List<Organization> orgs2 = dao.getOrganizationByMinEmployees(numEmpl);
 		System.out.println("**** Mostrando organizations con mas de " + numEmpl +" empleados");
-		for (Organization orga : orgs2){
-			DaoUtils.printOrganization(orga, "Mas_de_"+numEmpl+"_empleados");
-		}
+//		for (Organization orga : orgs2){
+//			DaoUtils.printOrganization(orga, "Mas_de_"+numEmpl+"_empleados");
+//		}
+		orgs2.forEach((Organization) -> DaoUtils.printOrganization(Organization, "Mas_de_"+numEmpl+"_empleados"));
 		
 
 		dao.cleanup();
